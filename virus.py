@@ -83,7 +83,7 @@ class Virus(object):
 
     def get_broadcast(self) -> list:
         """"获取实时播报"""
-        url = "https://assets.dxycdn.com/gitrepo/bbs-mobile/dist/p__Pneumonia__timeline.async.00436435.js"
+        url = "https://assets.dxycdn.com/gitrepo/bbs-mobile/dist/p__Pneumonia__timeline.async.4363ba04.js"
         html = self.get_html(url)
         pattern = re.compile(r"JSON.parse\('(.*?)'\)}", re.M)
         json_text = re.findall(pattern, html)[0].encode('utf-8').decode(
