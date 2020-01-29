@@ -2,10 +2,16 @@
 - [主页面](1.html) 
 - [加载出的js](./3.js)  url 变成 3.js
 
+<p style='color:red'>
+注意：
+</p>
+- 目前`get_broadcast()`函数不能够正确获取实时的信息，目前可以直接使用网页加载出来的`json`文件，目前网页链接为[https://file1.dxycdn.com/2020/0127/794/3393185296027391740-115.json](https://file1.dxycdn.com/2020/0127/794/3393185296027391740-115.json)，可自行在`F12`之后`network`中获取
+
+  
+
 爬取出来的部分数据：
 
 <hr/>
-
 
 
 <table border="1" style="border-collapse:collapse">
@@ -45,7 +51,6 @@
 <tr><td>青海省</td><td>青海</td><td>0</td><td>1</td><td>0</td><td>0</td><td>西宁新增疑似 1 例</td></tr></table>
 
 <hr/>
-
 
 <table border="1" style="border-collapse:collapse">
 <tr><th>provinceShortName</th><th>cityName</th><th>confirmedCount</th><th>suspectedCount</th><th>curedCount</th><th>deadCount</th></tr>
@@ -192,4 +197,3 @@
 <tr><td>甘肃</td><td>白银</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
 <tr><td>山西</td><td>太原</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
 <tr><td>内蒙古</td><td>满洲里</td><td>1</td><td>0</td><td>0</td><td>0</td></tr></table>
-
