@@ -32,7 +32,9 @@ class Virus(object):
         self._html = self.get_html(self.url)
 
     def get_picture(self):
+        """获取网页中的部分疫情图"""
         flag = True
+        print(self._html)
         pattern = re.compile(r'<img class="mapImg___3LuBG" src="(.*?)">', re.S)
         src = re.findall(pattern, self._html)
 
@@ -56,6 +58,7 @@ class Virus(object):
                     print("输入错误，请重新输入")
 
     def get_des(self) -> dict:
+        """获取网页最开始的描述信息"""
         pattern = re.compile(r'<div class="mapTop___2VZCl">(.*?)</div>')
         des_div = re.findall(pattern, self._html)
         # print(des_div[0])
@@ -67,6 +70,7 @@ class Virus(object):
         return {"description": des_text_list}
 
     def get_area_stat(self):
+        """获取不同城市的状态"""
         pattern = re.compile(r'window.getAreaStat = (.*?)}catch')
         json_text = re.findall(pattern, self._html)[0]
         return json.loads(json_text)
@@ -90,7 +94,8 @@ class Virus(object):
             "unicode_escape")
         return json.loads(json_text)
 
-    def get_left_broadcast(self):
+    def get_left_broadcast(self) -> list:
+        """获取首页中的播报内容"""
         pattern = re.compile(r"window.getTimelineService =(.*?)}catch")
         json_text = re.findall(pattern, self._html)[0]
         return json.loads(json_text)
@@ -128,6 +133,7 @@ class Virus(object):
 
     @staticmethod
     def create_database() -> None:
+        """创建需要的数据库对象，使用的时候需要指定数据库，并且要先行创建"""
         connect = pymysql.connect("localhost", 'root', 'Edgar', 'edgar')
         cursor = connect.cursor()
         sql = "CREATE TABLE IF NOT EXISTS broadcast(id INTEGER NOT NULL , " \
@@ -153,6 +159,10 @@ class Virus(object):
         connect.close()
 
     def insert(self, info) -> None:
+        """"
+        插入信息内容到数据库
+        :info 字典类型
+        """
         connect = pymysql.connect("localhost", 'root', 'Edgar', 'edgar')
         cursor = connect.cursor()
         sql = 'INSERT INTO broadcast(id, pubDate, title, summary, infoSource, ' \
@@ -173,6 +183,7 @@ class Virus(object):
         connect.close()
 
     def upload_data(self) -> None:
+        """批量上传信息到数据库中"""
         info = self.get_broadcast()
         for data in info[::-1]:
             self.insert(data)
@@ -194,6 +205,7 @@ class Virus(object):
         return date
 
     def insert_to_province(self, info) -> None:
+        """插入到province table中"""
         connect = pymysql.connect("localhost", 'root', 'Edgar', 'edgar')
         cursor = connect.cursor()
         sql = 'INSERT INTO province(provinceName, provinceShortName, ' \
@@ -212,6 +224,10 @@ class Virus(object):
         connect.close()
 
     def get_city_detail(self, city) -> str:
+        """
+        获取city的信息
+        :city 城市名，需要满足一定的条件，需要数据库中的 shortName
+        """
         connect = pymysql.connect("localhost", 'root', 'Edgar', 'edgar')
         cursor = connect.cursor()
         sql = 'SELECT * FROM province where provinceShortName="%s"' % city
@@ -226,6 +242,11 @@ class Virus(object):
 
     @staticmethod
     def insert_to_city(info):
+        """
+        插入信息到city table中
+        :param info: 信息字典类型
+        :return: None
+        """
         connect = pymysql.connect("localhost", 'root', 'Edgar', 'edgar')
         cursor = connect.cursor()
         sql = 'INSERT INTO city(provinceShortName, cityName, confirmedCount, ' \
@@ -243,6 +264,7 @@ class Virus(object):
         connect.close()
 
     def refresh_province_city(self):
+        """刷新对应的信息"""
         connect = pymysql.connect("localhost", 'root', 'Edgar', 'edgar')
         cursor = connect.cursor()
         sql = 'truncate table city;'
@@ -254,6 +276,20 @@ class Virus(object):
         connect.close()
         self.upload_area_stat()
 
+    def refresh_broadcast(self):
+        """
+        刷新播报的信息
+        :return:  None
+        """
+        connect = pymysql.connect("localhost", 'root', 'Edgar', 'edgar')
+        cursor = connect.cursor()
+        sql = 'truncate table broadcast'
+        cursor.execute(sql)
+        connect.commit()
+        cursor.close()
+        connect.close()
+        self.upload_data()
+        self.upload_left_data()
 
 
 if __name__ == "__main__":
@@ -261,7 +297,7 @@ if __name__ == "__main__":
 
     # virus.get_picture()
 
-    virus.create_database()
+    # virus.create_database()
 
     # print(virus.get_des())
 
@@ -277,11 +313,12 @@ if __name__ == "__main__":
 
     # virus.check_latest()
 
-    # virus.upload_data()
-    # virus.upload_left_data()
+    virus.refresh_broadcast()
 
     # print(virus.get_city_detail("上海"))
 
     # virus.check_latest()
 
     virus.refresh_province_city()
+
+    # virus.upload_data()
