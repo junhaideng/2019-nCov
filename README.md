@@ -1,6 +1,6 @@
 当时爬取的两个主要页面 ：
 - [主页面](1.html) 
-- [加载出的js](./3.js)  url 变成 3.js (version 2 中使用加载出的json文件)
+- [加载出的js](./3.js)  url 变成 3.js (version 2 中使用加载出的[json文件](case_timeline_list.json))
 
 <p style='color:red'>
 注意：
