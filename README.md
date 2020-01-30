@@ -1,12 +1,12 @@
 当时爬取的两个主要页面 ：
 - [主页面](1.html) 
-- [加载出的js](./3.js)  url 变成 3.js
+- [加载出的js](./3.js)  url 变成 3.js (version 2 中使用加载出的json文件)
 
 <p style='color:red'>
 注意：
 </p>
 
-- 目前`get_broadcast()`函数不能够正确获取实时的信息，目前可以直接使用网页加载出来的`json`文件，目前网页链接为 [https://file1.dxycdn.com/2020/0127/794/3393185296027391740-115.json](https://file1.dxycdn.com/2020/0127/794/3393185296027391740-115.json), 可自行在`F12`之后`network`中获取
+- ~~目前`get_broadcast()`函数不能够正确获取实时的信息，目前可以直接使用网页加载出来的`json`文件，目前网页链接为 [https://file1.dxycdn.com/2020/0127/794/3393185296027391740-115.json](https://file1.dxycdn.com/2020/0127/794/3393185296027391740-115.json), 可自行在`F12`之后`network`中获取~~  <br>(version 2 中已解决)
 
   
 
