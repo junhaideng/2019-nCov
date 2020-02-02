@@ -1,20 +1,33 @@
-当时爬取的两个主要页面 ：
+###  `virus.py`爬取的丁香园上的信息
+
+  当时爬取的两个主要页面 ：
+
 - [主页面](1.html) 
 - [加载出的js](./3.js)  url 变成 3.js (version 2 中使用加载出的[json文件](case_timeline_list.json))
 
-<p style='color:red'>
+<p style='font-weight:bold''>
 注意：
 </p>
 
 - ~~目前`get_broadcast()`函数不能够正确获取实时的信息，目前可以直接使用网页加载出来的`json`文件，目前网页链接为 [https://file1.dxycdn.com/2020/0127/794/3393185296027391740-115.json](https://file1.dxycdn.com/2020/0127/794/3393185296027391740-115.json), 可自行在`F12`之后`network`中获取~~  <br>(version 2 中已解决)
 
-  
+
+
+<hr>
+
+### `virus_sina.py`爬取新浪微博上的信息
+
+- 主要使用的是网页加载出的`json`文件，比丁香医生网上要简单
+
+
+
+<hr>
+
+
 
 爬取出来的部分数据：
 
 <hr/>
-
-
 <table border="1" style="border-collapse:collapse">
 <tr><th>provinceName</th><th>provinceShortName</th><th>confirmedCount</th><th>suspectedCount</th><th>curedCount</th><th>deadCount</th><th>comment</th></tr>
 <tr><td>湖北省</td><td>湖北</td><td>549</td><td>0</td><td>31</td><td>24</td><td></td></tr>
@@ -52,7 +65,6 @@
 <tr><td>青海省</td><td>青海</td><td>0</td><td>1</td><td>0</td><td>0</td><td>西宁新增疑似 1 例</td></tr></table>
 
 <hr/>
-
 <table border="1" style="border-collapse:collapse">
 <tr><th>provinceShortName</th><th>cityName</th><th>confirmedCount</th><th>suspectedCount</th><th>curedCount</th><th>deadCount</th></tr>
 <tr><td>湖北</td><td>武汉</td><td>495</td><td>0</td><td>31</td><td>23</td></tr>
@@ -198,3 +210,4 @@
 <tr><td>甘肃</td><td>白银</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
 <tr><td>山西</td><td>太原</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
 <tr><td>内蒙古</td><td>满洲里</td><td>1</td><td>0</td><td>0</td><td>0</td></tr></table>
+
