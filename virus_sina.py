@@ -31,14 +31,13 @@ class Virus(object):
         """下载json文件"""
         flag = True
         json_ = self.get_json()
-        print(json_)
 
         if not os.path.exists(filename):
             with open(filename, "w") as file:
                 json.dump(json_, file)
         else:
+            answer = input("该目录已经存在文件 %s，是否删除该文件(y/n):  " % filename)
             while flag:
-                answer = input("该目录已经存在文件 %s，是否删除该文件(y/n):  " % filename)
                 if answer in ['y', 'Y']:
                     with open(filename, 'w') as file:
                         json.dump(json_, file)
@@ -46,7 +45,7 @@ class Virus(object):
                 elif answer in ['n', 'N']:
                     return
                 else:
-                    print("输入错误，请重新输入: ")
+                    answer = input("输入错误，请重新输入: ")
 
     @staticmethod
     def create_table():
@@ -158,6 +157,7 @@ class Virus(object):
         """获取timeline中的信息"""
         url = "https://interface.sina.cn/wap_api/wap_std_subject_feed_list.d.json?component_id=_conf_13|wap_zt_std_theme_timeline|http://news.sina.cn/zt_d/yiqing0121&page={}"
         count = 0
+        timeline_url_list = self.get_timeline_url()
         while True:
             response = requests.get(url.format(count), headers=self.header)
             try:
@@ -169,9 +169,24 @@ class Virus(object):
                 if data:
                     count += 1
                     for i in data:
-                        self.insert_timeline(i)
+                        print(i.get("url"))
+                        if i.get("url") in timeline_url_list:
+                            continue
+                        else:
+                            self.insert_timeline(i)
                 else:
                     return
+
+    @staticmethod
+    def get_timeline_url():
+        connect = pymysql.connect("localhost", 'root', 'Edgar', 'virus')
+        cursor = connect.cursor()
+        sql = "SELECT url FROM virus_timeline;"
+        cursor.execute(sql)
+        result = cursor.fetchall()
+        cursor.close()
+        connect.close()
+        return [i[0] for i in result]
 
 
 if __name__ == '__main__':
@@ -181,4 +196,6 @@ if __name__ == '__main__':
 
     # virus.upload_data()
     virus.refresh_data()
+    # virus.get_timeline()
+    # print(virus.get_timeline_url())
     # virus.get_timeline()
