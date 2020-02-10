@@ -1,3 +1,31 @@
+#### 全国新型肺炎疫情实时动态获取渠道：
+
+- [ ] 丁香医生： [https://ncov.dxy.cn/ncovh5/view/pneumonia]( https://ncov.dxy.cn/ncovh5/view/pneumonia )
+
+- [ ] 百度：[ https://voice.baidu.com/act/newpneumonia/newpneumonia ]( https://voice.baidu.com/act/newpneumonia/newpneumonia )
+
+- [ ] 网易：[http://news.163.com/special/epidemic](http://news.163.com/special/epidemic)
+
+- [ ] 新浪： [ https://news.sina.cn/zt_d/yiqing0121 ]( https://news.sina.cn/zt_d/yiqing0121 )
+
+- [ ] 腾讯：[https://news.qq.com//zt2020/page/feiyan.htm](https://news.qq.com//zt2020/page/feiyan.htm)
+
+- [ ] 阿里：[ https://alihealth.taobao.com/medicalhealth/influenzamap ]( https://alihealth.taobao.com/medicalhealth/influenzamap )
+
+- [ ] 微医： [ https://promo.guahao.com/topic/pneumonia ]( https://promo.guahao.com/topic/pneumonia )
+
+- [ ] 知乎： [ https://www.zhihu.com/special/19681091 ]( https://www.zhihu.com/special/19681091 )
+
+- [ ] 夸克： [ https://broccoli.uc.cn/apps/pneumonia/routes/index ]( https://broccoli.uc.cn/apps/pneumonia/routes/index )
+
+- [ ] 搜狗： [ http://sa.sogou.com/new-weball/page/sgs/epidemic ]( http://sa.sogou.com/new-weball/page/sgs/epidemic )
+
+- [ ] 凤凰： [ https://news.ifeng.com/c/special/7tPlDSzDgVk ]( https://news.ifeng.com/c/special/7tPlDSzDgVk )
+
+
+<hr/>
+
+
 ###  `virus.py`爬取的丁香园上的信息
 
   当时爬取的两个主要页面 ：
